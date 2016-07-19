@@ -1,21 +1,21 @@
 import java.lang.StringBuffer;
 
 abstract class UnionFind {
-	protected int[] mSet;
+	protected int[] set;
 
 	public UnionFind (int N) {
-		mSet = new int[N];
+		set = new int[N];
 		for (int i = 0; i < N; i++) {
-			mSet[i] = i;
+			set[i] = i;
 		}
 	}
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < mSet.length; i++)
+		for (int i = 0; i < set.length; i++)
 			sb.append("[" + i + "]" + "\t");
 		sb.append("\n");
-		for (int x : mSet) {
+		for (int x : set) {
 			sb.append(x + "\t");
 		}
 
@@ -23,5 +23,5 @@ abstract class UnionFind {
 	}
 
 	abstract public void union (int p, int q);
-	abstract public boolean connected (int p, int q);
+	abstract public int find (int p);
 }

@@ -4,25 +4,15 @@ class QuickUnion extends UnionFind {
 	}
 
 	public void union(int p, int q) {
-		int root = q;
-		while (mSet[root] != root) {
-			root = mSet[root];
-		}
-
-		mSet[root] = p;
+		int root_q = find(q);
+		int root_p = find(p);
+		
+		set[root_q] = root_p;
 	}
 
-	public boolean connected(int p, int q) {
-		int root_p = mSet[p];
-		while (mSet[root_p] != root_p) {
-			root_p = mSet[root_p];
-		}
-
-		int root_q = mSet[q];
-		while (mSet[root_q] != root_q) {
-			root_q = mSet[root_q];
-		}
-
-		return root_q == root_p;
+	public int find(int p) {
+		while (p != set[p])
+			p = set[p];
+		return p;
 	}
 }

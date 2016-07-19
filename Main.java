@@ -1,9 +1,9 @@
 class Main {
 	public static void main (String[] args) {
-		int N = Integer.parseInt(args[0]);
+		int N = 5;
 
 		System.out.println("\t\tQuick Find");
-		QuickFind qf = new QuickFind(N);
+		UnionFind qf = new QuickFind(N);
 		System.out.println(qf.toString());
 
 		System.out.println("Union 0 and 1: ");
@@ -18,11 +18,11 @@ class Main {
 		qf.union(0, 2);
 		System.out.println(qf.toString() + "\n");
 
-		System.out.println("Is 1 connected to 2? " + qf.connected(1, 2));
-		System.out.println("Is 3 connected to 4? " + qf.connected(3, 4) + "\n");
+		System.out.println("Is 1 connected to 2? " + (qf.find(1) == qf.find(2)));
+		System.out.println("Is 3 connected to 4? " + (qf.find(3) == qf.find(4)) + "\n");
 
 		System.out.println("\t\tQuick Union");
-		QuickUnion qu = new QuickUnion(N);
+		UnionFind qu = new QuickUnion(N);
 		System.out.println(qu.toString() + "\n");
 
 		System.out.println("Union 0 and 1: ");
@@ -37,7 +37,45 @@ class Main {
 		qu.union(0, 2);
 		System.out.println(qu.toString() + "\n");
 
-		System.out.println("Is 1 connected to 2? " + qu.connected(1, 2));
-		System.out.println("Is 3 connected to 4? " + qu.connected(3, 4) + "\n");
+		System.out.println("Is 1 connected to 2? " + (qu.find(1) == qu.find(2)));
+		System.out.println("Is 3 connected to 4? " + (qu.find(3) == qu.find(4)) + "\n");
+
+		System.out.println("\t\tWeighted Quick Union");
+		UnionFind wqu = new WeightedQuickUnion(N);
+		System.out.println(wqu.toString() + "\n");
+
+		System.out.println("Union 0 and 1: ");
+		wqu.union(0, 1);
+		System.out.println(wqu.toString() + "\n");
+
+		System.out.println("Union 2 and 3: ");
+		wqu.union(2, 3);
+		System.out.println(wqu.toString() + "\n");
+
+		System.out.println("Union 0 and 2: ");
+		wqu.union(0, 2);
+		System.out.println(wqu.toString() + "\n");
+
+		System.out.println("Is 1 connected to 2? " + (wqu.find(1) == wqu.find(2)));
+		System.out.println("Is 3 connected to 4? " + (wqu.find(3) == wqu.find(4)) + "\n");
+
+		System.out.println("\t\tUnion-by-Rank with Path-Compression");
+		UnionFind urpc = new UnionByRankPathCompression(N);
+		System.out.println(urpc.toString() + "\n");
+
+		System.out.println("Union 0 and 1: ");
+		urpc.union(0, 1);
+		System.out.println(urpc.toString() + "\n");
+
+		System.out.println("Union 2 and 3: ");
+		urpc.union(2, 3);
+		System.out.println(urpc.toString() + "\n");
+
+		System.out.println("Union 0 and 2: ");
+		urpc.union(0, 2);
+		System.out.println(urpc.toString() + "\n");
+
+		System.out.println("Is 1 connected to 2? " + (urpc.find(1) == urpc.find(2)));
+		System.out.println("Is 3 connected to 4? " + (urpc.find(3) == urpc.find(4)) + "\n");
 	}
 }

@@ -4,14 +4,14 @@ class QuickFind extends UnionFind {
 	}
 
 	public void union (int p, int q) {
-		int root = mSet[q];
+		int root = set[q];
 
-		for (int i = 0; i < mSet.length; i++)
-			if (mSet[i] == root)
-				mSet[i] = mSet[p];
+		for (int i = 0; i < set.length; i++)
+			if (set[i] == root)
+				set[i] = set[p];
 	}
 
-	public boolean connected (int p, int q) {
-		return mSet[p] == mSet[q];
+	public int find (int p) {
+		return set[p];
 	}
 }
